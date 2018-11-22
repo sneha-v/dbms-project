@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>View Courses</title>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+  <div class="col-sm-12 col-xs-12 table-responsive">
+  <table class="table table-bordered"><thead><tr><th>Course Name</th><th>Topics Covered</th></tr><tbody>
+  {% for cou in range(course |length) %}
+
+  <tr><td>{{ course[cou][0] }}</td><td>
+    {% for top in topic[cou] %}
+    <li>{{ top }}</li>
+      {% endfor %}
+    <a href="/courses/{{ course[cou][0] }}" class="btn btn-primary pull-right" role="button">Enroll</a>
+
+  </td></tr>
+
+  {% endfor %}
+</tbody></table>
+<a href="/login"><input type="button" name="ans" value="Go Back"></button>'</a>
+  </body>
+</html>

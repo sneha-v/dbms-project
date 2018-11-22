@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <p><strong>Self Analysis</strong></p>
+
+    {% for i in range(test| length) %}
+    <p><strong>Question:</strong></p>
+    {{i+1}}
+    {{test[i][0]}}
+    <br>
+    <p><strong>Options:</strong></p>
+    {{test[i][2]}}
+    <p><strong>Answer:</strong></p>
+    {{test[i][1]}}
+    {% endfor %}
+    <p>If self satisfied with your learning</p>
+    <br>
+    <a href="/profile/{{cname}}/{{uname}}"><input type="button" name="com" value="Complete"></button>'</a>
+    
+
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    {{ name }}
+    <br>
+    {% for i in range(li| length) %}
+    <li>{{li[i]}} --> {{cou_li[i]}}</li>
+    {% endfor %}
+    <br>
+    <p><strong> Total courses Taken and self analysed:</strong></p>
+    {{total}}
+    <br>
+    <a href="/login"><input type="button" name="ans" value="Go Back"></button>'</a>
+
+    </form>
+  </body>
+</html>

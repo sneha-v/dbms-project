@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <p><strong>Solve Yourself</strong></p>
+
+    {% for i in range(test| length) %}
+    <p><strong>Question:</strong></p>
+    {{i+1}}
+    {{test[i][0]}}
+    <br>
+    <p><strong>Options:</strong></p>
+    {{test[i][2]}}
+    {% endfor %}
+    <a href="/test/{{cname}}/answers"><input type="button" name="ans" value="View Answers"></button>'</a>
+    <a href="/login"><input type="button" name="ans" value="Go Back"></button>'</a>
+  </body>
+</html>

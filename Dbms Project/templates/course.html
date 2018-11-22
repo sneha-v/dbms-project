@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Smart learning system</title>
+  </head>
+  <body>
+    {{cname}}
+<ul>
+  {% for i in range(topic| length) %}
+    {% for j in coll[i] %}
+  <li>{{topic[i]}}</li>
+  <li>
+    <a href="{{j}}">{{j}}</a></li>
+    {% endfor %}
+  {% endfor %}
+  <br>
+  <br>
+</ul>
+
+
+<a href="/test/{{cname}}"><input type="button" name="Test" value="Test"></button>'</a>
+
+<a href="/login"><input type="button" name="ans" value="Go Back"></button>'</a>
+  </body>
+</html>
