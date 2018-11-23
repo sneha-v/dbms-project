@@ -19,6 +19,7 @@ def index():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+    re.comm()
     sample = False
     clear = False
     error = None
@@ -29,6 +30,10 @@ def login():
         email = request.form['mail']
         password = request.form['pass']
         sample = check.login(email, password)
+        if sample == True:
+            uid = re.get_id(email)
+            if uid  == 1:
+                return redirect(url_for("admin"))
         clear = True
     if clear == False:
         return render_template("login.html", error = error)
@@ -44,9 +49,11 @@ def login():
 
 @app.route("/signin", methods=['GET', 'POST'])
 def signin():
+    re.comm()
     sample = False
     clear = False
     error = None
+
     if 'username' in session:
         return render_template('choice.html', uname = 'username')
     if request.method == 'POST':
@@ -65,6 +72,7 @@ def signin():
         if sample == False:
             session['username'] = email
             inn.insert_user(name,password,phone,email)
+            re.comm()
             return render_template("choice.html", uname=name)
         else:
             error = "Email already exist!please enter new email"
@@ -74,11 +82,13 @@ def signin():
 @app.route('/logout')
 def logout():
     session.pop('username', None)
+    re.comm()
     return redirect(url_for('index'))
 
 
 @app.route("/courses", methods=['GET', 'POST'])
 def courses():
+    re.comm()
     ch = False
     course = re.get_cour()
     topic = re.top_disp()
@@ -101,6 +111,7 @@ def courses():
 @app.route("/courses/<cname>" ,methods =['GET','POST'])
 def cou_name(cname):
     #clear = False
+    re.comm()
     cid , uid = re.enroll(cname,session['username'])
     check = re.check_enroll(cid,uid)
     if check == False:
@@ -124,7 +135,7 @@ def take_answers(cname):
 
 
 @app.route("/profile/<cname>/<username>")
-def profile(cname, username):
+def profile(cname, username):  
     cid , uid = re.enroll(cname,session['username'])
     inn.insert_profile(cid,uid)
     re.delete_enroll(cid,uid)
@@ -142,6 +153,62 @@ def profile_ach(username):
     rem,cou = re.remove_dup(cou_c)
     username = re.get_name(session['username'])
     return render_template("profile.html", name = username, li=rem, cou_li=cou,total=sum(cou))
+
+@app.route("/admin",methods=['GET', 'POST'])
+def admin():
+    return render_template("admin.html")
+
+@app.route("/addcourses",methods=['GET', 'POST'])
+def addcourses():
+    if request.method == 'POST':
+        cname = request.form['cname']
+        cdur = request.form['cdur']
+        err = inn.insert_courses(cname,cdur)
+        if err==None:
+            return render_template("admin.html")
+        else:
+            return render_template("addcourses.html" , error=err)
+    return render_template("addcourses.html")
+
+@app.route("/addtopics",methods=['GET', 'POST'])
+def addtopics():
+    if request.method == 'POST':
+        cname = request.form['cname']
+        tname = request.form['tname']
+        tdur = request.form['tdur']
+        err = inn.topics(cname,tname,tdur)
+        if err==None:
+            return render_template("admin.html")
+        else:
+            return render_template("addtopics.html" , error=err)
+    return render_template("addtopics.html")
+
+@app.route("/addcoll",methods=['GET', 'POST'])
+def addcoll():
+    if request.method == 'POST':
+        tname = request.form['tname']
+        coname = request.form['coname']
+        cotype = request.form['cotype']
+        err = inn.collection(tname,coname,cotype)
+        if err==None:
+            return render_template("admin.html")
+        else:
+            return render_template("addcoll.html" , error=err)
+    return render_template("addcoll.html")
+
+@app.route("/addquestions",methods=['GET', 'POST'])
+def addquest():
+    if request.method == 'POST':
+        cname = request.form['cname']
+        qname = request.form['qname']
+        ans = request.form['ans']
+        options = request.form['option']
+        err = inn.quest(cname,qname,ans,options)
+        if err==None:
+            return render_template("admin.html")
+        else:
+            return render_template("addquest.html" , error=err)
+    return render_template("addquest.html")
 
 if __name__ == "__main__":
     app.jinja_env.auto_reload = True

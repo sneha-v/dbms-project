@@ -190,12 +190,7 @@ class retrieve(object):
         return rem,cou
 
 
-    # def get_con(self):
-    #     self.db= con.connect(
-    #         host = "localhost",
-    #         user = "root",
-    #         password = "snehasindhu@3",
-    #         database = "pro"
-    #     )
-    #     self.cur=con.cursor()
-    #     return self.db,self.cur
+    def comm(self):
+        self.db.commit()
+
+    

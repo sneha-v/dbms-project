@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    Add Courses:
+    <br>
+    <form class="" action="/addcourses" method="post">
+      <label for="cname">Course name</label>
+      <input id="cname" type="text" name="cname" value="" placeholder="Course name">
+      <label for="cdur">Course duration</label>
+      <input id="cdur" type="text" name="cdur" value="" placeholder="Course Duration">
+      <br>
+      <input type="submit" name="sub" value="SUBMIT">
+      <br>
+      {{error}}
+      <br>
+      <a href="/addtopics" class="button">Add Topics</a>
+      <a href="/logout" class="button">LogOut</a>
+    </form>
+
+  </body>
+</html>

@@ -1,4 +1,5 @@
 import mysql.connector as con
+from flask import flash
 
 class insert:
 
@@ -35,8 +36,10 @@ class insert:
         if cthere == None:
             self.cur.execute(sql1,val3)
         else:
-            print("course already exists")
+            error ="course already exists"
+            return error
         self.db.commit()
+
 
     def topics(self, cname, topicname, topicdur):
         sql1 = """select cid from course where cname =%s"""
@@ -44,13 +47,28 @@ class insert:
         self.cur.execute(sql1,val1)
         cidd = self.cur.fetchone()
         if cidd==None:
-            print("course doesnot exist")
-            return 0
+            error = "course doesnot exist"
+            return error
         else:
             sql2 = """insert into topics(tname,tduration,cid) values (%s,%s,%s)"""
             val2 = (topicname,topicdur,cidd[0])
             self.cur.execute(sql2,val2)
             self.db.commit()
+
+    def quest(self, cname, quest,answer,options):
+        sql1 = """select cid from course where cname =%s"""
+        val1 = (cname,)
+        self.cur.execute(sql1,val1)
+        cidd = self.cur.fetchone()
+        if cidd==None:
+            error = "course doesnot exist"
+            return error
+        else:
+            sql2 = """insert into test1(answer,quest,cid,options) values (%s,%s,%s,%s)"""
+            val2 = (answer,quest,cidd[0],options)
+            self.cur.execute(sql2,val2)
+            self.db.commit()
+
 
     def collection(self, topicname, coll,col_type):
         sql3 = """select tid from topics where tname=%s"""
@@ -58,8 +76,8 @@ class insert:
         self.cur.execute(sql3,val3)
         tidd = self.cur.fetchone()
         if tidd == None:
-            print("topic doesnot exist")
-            return 0
+            error = "topic doesnot exist"
+            return error
         sql4 = """insert into collection1(coltype,collink,tid) values(%s,%s,%s)"""
         val4 = (col_type,coll,tidd[0])
         self.cur.execute(sql4,val4)
@@ -71,39 +89,39 @@ class insert:
         self.cur.execute(sql3,val3)
         self.db.commit()
 
-if __name__=="__main__":
-    innn= insert()
-    chc = input("do you want to enter a course? yes/no")
-    if chc=='yes':
-        while True:
-            n=input("enter the new course name")
-            d = input("enter the duration of the course")
-            innn.insert_courses(n,d)
-            choice = input("do you want to insert another course? yes/no")
-            if choice=='no':
-                break
-    cht = input("do you want to insert a topic under any course? yes/no")
-    if cht == 'yes':
-        while True:
-            cname = input("enter the course name under which topic is to be inserted")
-            topicname = input("enter the topic name")
-            tdur= input("enter the topic duration")
-            y=innn.topics(cname,topicname,tdur)
-            if y==0:
-                break
-            choi = input("do you want to add more topics? yes/no")
-            if choi == "no":
-                break
-    chc = input("do you want to insert collection for any topic? yes/no")
-    if chc == "yes":
-        while True:
-            tname = input("enter the topic name under which collection has to be inserted")
-            colink = input("enter the collection link")
-            coltype= input("enter the collection type")
-            x=innn.collection(tname,colink,coltype)
-            if x==0:
-                break
-            ch = input("do you still want to add the collection under this topic?")
-            if ch=='no':
-                break
-    print("thank you")
+# if __name__=="__main__":
+#     innn= insert()
+#     chc = input("do you want to enter a course? yes/no")
+#     if chc=='yes':
+#         while True:
+#             n=input("enter the new course name")
+#             d = input("enter the duration of the course")
+#             innn.insert_courses(n,d)
+#             choice = input("do you want to insert another course? yes/no")
+#             if choice=='no':
+#                 break
+#     cht = input("do you want to insert a topic under any course? yes/no")
+#     if cht == 'yes':
+#         while True:
+#             cname = input("enter the course name under which topic is to be inserted")
+#             topicname = input("enter the topic name")
+#             tdur= input("enter the topic duration")
+#             y=innn.topics(cname,topicname,tdur)
+#             if y==0:
+#                 break
+#             choi = input("do you want to add more topics? yes/no")
+#             if choi == "no":
+#                 break
+#     chc = input("do you want to insert collection for any topic? yes/no")
+#     if chc == "yes":
+#         while True:
+#             tname = input("enter the topic name under which collection has to be inserted")
+#             colink = input("enter the collection link")
+#             coltype= input("enter the collection type")
+#             x=innn.collection(tname,colink,coltype)
+#             if x==0:
+#                 break
+#             ch = input("do you still want to add the collection under this topic?")
+#             if ch=='no':
+#                 break
+#     print("thank you")

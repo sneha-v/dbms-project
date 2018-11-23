@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    Add Collection:
+    <br>
+    <form class="" action="/addcoll" method="post">
+      <label for="tname">Topic name</label>
+      <input id="tname" type="text" name="tname" value="" placeholder="Topic name">
+      <br>
+      <label for="coname">collection link</label>
+      <input id="coname" type="text" name="coname" value="" placeholder="collection link">
+      <br>
+      <label for="cotype">collection type</label>
+      <input id="cotype" type="text" name="cotype" value="" placeholder="collection type">
+      <br>
+      <input type="submit" name="sub" value="SUBMIT">
+      <br>
+      {{error}}
+      <br>
+      <a href="/addquestions" class="button">Add Question</a>
+      <a href="/logout" class="button">LogOut</a>
+    </form>
+
+  </body>
+</html>

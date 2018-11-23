@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    Add Topics:
+    <br>
+    <form class="" action="/addtopics" method="post">
+      <label for="cname">Course name</label>
+      <input id="cname" type="text" name="cname" value="" placeholder="Course name">
+      <br>
+      <label for="tname">Topics name</label>
+      <input id="tname" type="text" name="tname" value="" placeholder="Topics name">
+      <br>
+      <label for="tdur">Topics duration</label>
+      <input id="tdur" type="text" name="tdur" value="" placeholder="Topics Duration">
+      <br>
+      <input type="submit" name="sub" value="SUBMIT">
+      <br>
+      {{error}}
+      <br>
+      <a href="/addcoll" class="button">Add collection</a>
+      <a href="/logout" class="button">LogOut</a>
+    </form>
+
+  </body>
+</html>

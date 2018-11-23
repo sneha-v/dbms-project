@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    Add Question:
+    <br>
+    <form class="" action="/addquestions" method="post">
+      <label for="cname">Course name</label>
+      <input id="cname" type="text" name="cname" value="" placeholder="Course name">
+      <br>
+      <label for="qname">Question</label>
+      <input id="qname" type="text" name="qname" value="" placeholder="Enter question">
+      <br>
+      <label for="tdur">Answer</label>
+      <input id="tdur" type="text" name="ans" value="" placeholder="Enter answer">
+      <br>
+      <label for="tdu">Options</label>
+      <input id="tdu" type="text" name="option" value="" placeholder="Enter options">
+      <br>
+      <input type="submit" name="sub" value="SUBMIT">
+      <br>
+      {{error}}
+      <br>
+      <a href="/admin" class="button">Go Back</a>
+      <a href="/logout" class="button">LogOut</a>
+    </form>
+
+  </body>
+</html>
